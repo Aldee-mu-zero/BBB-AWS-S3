@@ -10,7 +10,7 @@ def upload_to_aws(local_file, bucket, s3_file):
     s3 = boto3.client('s3')
 
     try:
-        s3.upload_file(local_file, bucket, s3_file, ExtraArgs={'ContentType': ctype, 'ACL': "public-read"}) 
+        s3.upload_file(local_file, bucket, s3_file, ExtraArgs={'ContentType': ctype}) 
         return True
     except OSError as e:
         if e.errno == errno.ENOENT:
