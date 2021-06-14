@@ -5,6 +5,7 @@ mime = magic.Magic(mime=True)
 BUCKET_NAME = 'bbbrecordings'
 DELETE_SERVER_FILES = True ## Set False (F should be capital) if you don't want to delete files from bbb-server
 
+
 def create_presigned_post(bucket_name, object_name,
                           fields=None, conditions=None, expiration=3600):
     """Generate a presigned URL S3 POST request to upload a file
@@ -21,7 +22,8 @@ def create_presigned_post(bucket_name, object_name,
     """
 
     # Generate a presigned S3 POST URL
-    s3_client = boto3.client('s3')
+    dev = boto3.session.Session(profile_name='bbbrecords')
+    s3_client = dev.client('s3')
     try:
         response = s3_client.generate_presigned_post(bucket_name,
                                                      object_name,
@@ -37,7 +39,6 @@ def create_presigned_post(bucket_name, object_name,
 
 def upload_to_aws(local_file, bucket, s3_file):
     ctype = mime.from_file(local_file) 
-    s3 = boto3.client('s3')
     response = create_presigned_post(bucket, s3_file, ExtraArgs={'ContentType': ctype})
     try:
         http_response = requests.post(response['url'], data=response['fields'], files=files)
