@@ -2,8 +2,8 @@ import os, glob, shutil, boto3, magic
 from botocore.exceptions import NoCredentialsError
 mime = magic.Magic(mime=True)
 ## Configuration Part 
-BUCKET_NAME = ''
-DELETE_SERVER_FILES = False ## Set False (F should be capital) if you don't want to delete files from bbb-server
+BUCKET_NAME = 'bbbrecordings'
+DELETE_SERVER_FILES = True ## Set False (F should be capital) if you don't want to delete files from bbb-server
 
 def upload_to_aws(local_file, bucket, s3_file):
     ctype = mime.from_file(local_file) 
