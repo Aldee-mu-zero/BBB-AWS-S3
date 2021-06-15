@@ -2,7 +2,7 @@ import os, glob, shutil, boto3, magic, logging, requests
 from botocore.exceptions import NoCredentialsError, ClientError
 mime = magic.Magic(mime=True)
 ## Configuration Part 
-BUCKET_NAME = 'bbbrecordings'
+BUCKET_NAME = 'bbbrecording'
 DELETE_SERVER_FILES = True ## Set False (F should be capital) if you don't want to delete files from bbb-server
 
 
