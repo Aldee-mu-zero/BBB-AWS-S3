@@ -1,4 +1,4 @@
-import os, glob, shutil, boto3, magic, logging, requests
+import os, glob, shutil, boto3, magic
 from botocore.exceptions import NoCredentialsError, ClientError
 mime = magic.Magic(mime=True)
 ## Configuration Part 
